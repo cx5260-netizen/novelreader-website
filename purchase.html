@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>购买高级版 - 小说阅读下载器</title>
+  <title>购买高级版 - 小说阅读下载助手</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
       font-size: 15px;
@@ -16,17 +15,8 @@
       min-height: 100vh;
       padding: 40px 20px;
     }
-    
-    .container {
-      max-width: 520px;
-      margin: 0 auto;
-    }
-    
-    .header {
-      text-align: center;
-      margin-bottom: 32px;
-    }
-    
+    .container { max-width: 560px; margin: 0 auto; }
+    .header { text-align: center; margin-bottom: 32px; }
     .header h1 {
       font-size: 28px;
       font-weight: 700;
@@ -36,12 +26,7 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    
-    .header p {
-      color: #94a3b8;
-      font-size: 14px;
-    }
-    
+    .header p { color: #94a3b8; font-size: 14px; }
     .card {
       background: #131829;
       border: 1px solid #334155;
@@ -49,38 +34,20 @@
       padding: 28px;
       margin-bottom: 20px;
     }
-    
     .price-card {
       text-align: center;
       background: linear-gradient(135deg, rgba(56,189,248,0.1), rgba(244,114,182,0.1));
       border-color: rgba(56,189,248,0.3);
     }
-    
-    .price-label {
-      font-size: 14px;
-      color: #94a3b8;
-      margin-bottom: 8px;
-    }
-    
+    .price-label { font-size: 14px; color: #94a3b8; margin-bottom: 8px; }
     .price-value {
       font-size: 48px;
       font-weight: 800;
       color: #38bdf8;
       line-height: 1;
     }
-    
-    .price-unit {
-      font-size: 16px;
-      color: #94a3b8;
-      font-weight: 400;
-    }
-    
-    .price-note {
-      font-size: 13px;
-      color: #f472b6;
-      margin-top: 8px;
-    }
-    
+    .price-unit { font-size: 16px; color: #94a3b8; font-weight: 400; }
+    .price-note { font-size: 13px; color: #f472b6; margin-top: 8px; }
     .section-title {
       font-size: 16px;
       font-weight: 600;
@@ -90,11 +57,7 @@
       align-items: center;
       gap: 8px;
     }
-    
-    .features-list {
-      list-style: none;
-    }
-    
+    .features-list { list-style: none; }
     .features-list li {
       display: flex;
       align-items: center;
@@ -104,88 +67,62 @@
       color: #cbd5e1;
       font-size: 14px;
     }
-    
-    .features-list li:last-child {
-      border-bottom: none;
-    }
-    
-    .feature-icon {
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-    
-    .steps {
-      counter-reset: step;
-    }
-    
-    .step {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 20px;
-      position: relative;
-    }
-    
-    .step-number {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, #38bdf8, #a78bfa);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 14px;
-      color: #0a0e1a;
-      flex-shrink: 0;
-    }
-    
-    .step-content h3 {
-      font-size: 15px;
+    .features-list li:last-child { border-bottom: none; }
+    .feature-icon { font-size: 20px; flex-shrink: 0; }
+    .feature-tag {
+      margin-left: auto;
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 10px;
+      background: rgba(56,189,248,0.15);
+      color: #38bdf8;
+      white-space: nowrap;
       font-weight: 600;
-      color: #f1f5f9;
-      margin-bottom: 4px;
     }
-    
-    .step-content p {
-      font-size: 13px;
-      color: #94a3b8;
-      line-height: 1.6;
-    }
-    
-    .qr-section {
-      text-align: center;
-      margin: 20px 0;
-    }
-    
-    .qr-images {
+    .pay-tabs {
       display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      margin-top: 16px;
+      gap: 8px;
+      margin-bottom: 16px;
     }
-    
-    .qr-item {
+    .pay-tab {
+      flex: 1;
+      padding: 10px;
       text-align: center;
-    }
-    
-    .qr-item img {
-      width: 160px;
-      height: 160px;
-      object-fit: contain;
-      border: 2px solid #334155;
-      border-radius: 12px;
-      background: #fff;
-      padding: 8px;
-    }
-    
-    .qr-item span {
-      display: block;
-      font-size: 13px;
+      border: 1.5px solid #334155;
+      border-radius: 20px;
+      background: #131829;
+      font-size: 14px;
       color: #94a3b8;
-      margin-top: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    
+    .pay-tab.active { background: #667eea; color: #fff; border-color: #667eea; }
+    .qr-section { text-align: center; margin: 16px 0; }
+    .qr-box {
+      padding: 16px;
+      background: #1e293b;
+      border-radius: 12px;
+      border: 2px dashed #334155;
+      margin-bottom: 12px;
+    }
+    .qr-box img { width: 180px; height: 180px; border-radius: 8px; object-fit: contain; }
+    .qr-label { font-size: 13px; color: #94a3b8; margin-top: 8px; }
+    .steps { margin-top: 8px; }
+    .step {
+      display: flex; gap: 12px; margin-bottom: 14px;
+      font-size: 13px; color: #cbd5e1;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 24px; height: 24px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-content h3 { font-size: 14px; font-weight: 600; color: #f1f5f9; margin-bottom: 2px; }
+    .step-content p { font-size: 13px; color: #94a3b8; line-height: 1.5; }
     .contact-box {
       background: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(244,114,182,0.15));
       border: 1px solid rgba(56,189,248,0.3);
@@ -193,64 +130,29 @@
       padding: 20px;
       text-align: center;
     }
-    
-    .contact-box h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: #f1f5f9;
-    }
-    
-    .contact-box p {
-      font-size: 14px;
-      color: #94a3b8;
-      margin-bottom: 8px;
-    }
-    
-    .contact-box .email {
-      font-size: 18px;
-      font-weight: 700;
-      color: #38bdf8;
-      margin: 12px 0;
-    }
-    
-    .contact-box .note {
-      font-size: 12px;
-      color: #64748b;
-      margin-top: 12px;
-    }
-    
+    .contact-box h3 { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #f1f5f9; }
+    .contact-box p { font-size: 14px; color: #94a3b8; margin-bottom: 8px; }
+    .contact-box .email { font-size: 18px; font-weight: 700; color: #38bdf8; margin: 12px 0; }
+    .contact-box .note { font-size: 12px; color: #64748b; margin-top: 12px; }
     .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 32px;
-      color: #94a3b8;
-      text-decoration: none;
-      font-size: 14px;
+      display: block; text-align: center; margin-top: 32px;
+      color: #94a3b8; text-decoration: none; font-size: 14px;
       transition: color 0.2s;
     }
-    
-    .back-link:hover {
-      color: #38bdf8;
-    }
-    
+    .back-link:hover { color: #38bdf8; }
     .badge {
-      display: inline-block;
-      padding: 4px 12px;
+      display: inline-block; padding: 4px 12px;
       background: rgba(244,114,182,0.2);
       border: 1px solid rgba(244,114,182,0.4);
       border-radius: 50px;
-      font-size: 12px;
-      color: #f472b6;
-      font-weight: 600;
-      margin-bottom: 12px;
+      font-size: 12px; color: #f472b6;
+      font-weight: 600; margin-bottom: 12px;
     }
-    
+    .hidden { display: none !important; }
     @media (max-width: 480px) {
       body { padding: 20px 16px; }
       .card { padding: 20px; }
       .price-value { font-size: 36px; }
-      .qr-item img { width: 130px; height: 130px; }
     }
   </style>
 </head>
@@ -260,76 +162,96 @@
       <h1>升级高级版</h1>
       <p>解锁全部功能，享受极致阅读体验</p>
     </div>
-    
+
     <div class="card price-card">
       <div class="badge">限时优惠</div>
       <div class="price-label">高级版永久授权</div>
       <div class="price-value">¥88 <span class="price-unit">/ 永久</span></div>
       <div class="price-note">一次购买，终身使用，无需续费</div>
     </div>
-    
+
     <div class="card">
-      <div class="section-title">
-        <span>✨</span> 高级版特权
-      </div>
+      <div class="section-title">✨ 高级版专属功能</div>
       <ul class="features-list">
-        <li><span class="feature-icon">📥</span><span>无限章节批量下载，整本小说一键保存</span></li>
-        <li><span class="feature-icon">🎧</span><span>高质量 TTS 语音朗读，护眼听书</span></li>
-        <li><span class="feature-icon">🎨</span><span>全部主题配色 + 自定义主题</span></li>
-        <li><span class="feature-icon">🚫</span><span>去广告纯净体验</span></li>
-        <li><span class="feature-icon">💬</span><span>优先技术支持，问题快速响应</span></li>
+        <li><span class="feature-icon">📥</span><span>无限章节批量下载，整本小说一键保存</span><span class="feature-tag">高级版</span></li>
+        <li><span class="feature-icon">☁️</span><span>云书架跨设备同步</span><span class="feature-tag">高级版</span></li>
+        <li><span class="feature-icon">💾</span><span>阅读进度云端保存</span><span class="feature-tag">高级版</span></li>
+        <li><span class="feature-icon">💬</span><span>优先技术支持，问题快速响应</span><span class="feature-tag">高级版</span></li>
       </ul>
     </div>
-    
+
     <div class="card">
-      <div class="section-title">
-        <span>🛒</span> 购买流程
+      <div class="section-title">🛒 购买流程</div>
+      <div class="pay-tabs">
+        <button class="pay-tab active" onclick="switchPay('wechat')">微信支付</button>
+        <button class="pay-tab" onclick="switchPay('alipay')">支付宝</button>
       </div>
+
+      <div class="qr-section" id="qrWechat">
+        <div class="qr-box">
+          <img src="icons/qr-wechat.png" alt="微信收款码">
+          <div class="qr-label">微信扫码支付 ¥88</div>
+        </div>
+      </div>
+      <div class="qr-section hidden" id="qrAlipay">
+        <div class="qr-box">
+          <img src="icons/qr-alipay.png" alt="支付宝收款码">
+          <div class="qr-label">支付宝扫码支付 ¥88</div>
+        </div>
+      </div>
+
       <div class="steps">
         <div class="step">
-          <div class="step-number">1</div>
+          <div class="step-num">1</div>
           <div class="step-content">
-            <h3>扫码付款</h3>
-            <p>使用微信或支付宝扫描下方二维码支付 ¥88</p>
+            <h3>扫码支付 ¥88</h3>
+            <p>选择上方支付方式，扫描二维码完成付款</p>
           </div>
         </div>
         <div class="step">
-          <div class="step-number">2</div>
+          <div class="step-num">2</div>
           <div class="step-content">
-            <h3>发送凭证</h3>
-            <p>付款后截图，发送至下方邮箱</p>
+            <h3>发送付款凭证</h3>
+            <p>将付款截图发送至 <strong style="color:#38bdf8;">cx5260@163.com</strong>，注明您的注册邮箱</p>
           </div>
         </div>
         <div class="step">
-          <div class="step-number">3</div>
+          <div class="step-num">3</div>
           <div class="step-content">
-            <h3>获取激活码</h3>
-            <p>24小时内回复邮件，收到激活码后在插件中激活</p>
+            <h3>等待激活码</h3>
+            <p>管理员核实后发送激活码（一个工作日内）</p>
           </div>
         </div>
-      </div>
-      
-      <div class="qr-section">
-        <div class="qr-images">
-          <div class="qr-item">
-            <img src="icons/qr-wechat.png" alt="微信支付">
-            <span>微信支付 ¥88</span>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>插件内激活</h3>
+            <p>打开浏览器插件 → 账号中心 → 输入激活码完成绑定</p>
           </div>
         </div>
       </div>
     </div>
-    
+
     <div class="card">
       <div class="contact-box">
         <h3>📧 联系购买</h3>
         <p>付款后请发送以下内容至邮箱：</p>
-        <p style="color: #cbd5e1; margin: 8px 0;">付款截图 + 您的邮箱地址</p>
+        <p style="color: #cbd5e1; margin: 8px 0;">付款截图 + 您的注册邮箱地址</p>
         <div class="email">cx5260@163.com</div>
-        <p class="note">收到邮件后24小时内回复激活码<br>如有任何问题，欢迎随时联系</p>
+        <p class="note">收到邮件后一个工作日内回复激活码<br>激活码在插件"账号中心"输入即可</p>
       </div>
     </div>
-    
-    <a href="index.html" class="back-link">← 返回官网首页</a>
+
+    <a href="https://noveldownload.cn/" class="back-link">← 返回官网首页</a>
   </div>
+
+  <script>
+    function switchPay(method) {
+      document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('qrWechat').classList.toggle('hidden', method !== 'wechat');
+      document.getElementById('qrAlipay').classList.toggle('hidden', method !== 'alipay');
+    }
+  </script>
 </body>
 </html>
