@@ -12,24 +12,24 @@
     <style>
         /* ========== CSS Variables ========== */
         :root {
-            --bg-primary: #0a0e1a;
-            --bg-card: #131829;
-            --bg-card-hover: #1a2038;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.25);
-            --accent-secondary: #f472b6;
-            --accent-secondary-glow: rgba(244, 114, 182, 0.25);
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --border: rgba(148, 163, 184, 0.12);
-            --border-hover: rgba(56, 189, 248, 0.3);
-            --gradient-accent: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-            --gradient-secondary: linear-gradient(135deg, #f472b6 0%, #fb923c 100%);
-            --gradient-hero: linear-gradient(180deg, #0a0e1a 0%, #0f1629 50%, #0a0e1a 100%);
-            --gradient-text: linear-gradient(135deg, #38bdf8 0%, #f472b6 100%);
-            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
-            --shadow-glow: 0 0 40px rgba(56, 189, 248, 0.15);
+            --bg-primary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8fafc;
+            --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.12);
+            --accent-secondary: #7c3aed;
+            --accent-secondary-glow: rgba(124, 58, 237, 0.12);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: rgba(15, 23, 42, 0.08);
+            --border-hover: rgba(37, 99, 235, 0.25);
+            --gradient-accent: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+            --gradient-secondary: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+            --gradient-hero: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%);
+            --gradient-text: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --shadow-glow: 0 0 40px rgba(37, 99, 235, 0.08);
             --radius-sm: 8px;
             --radius-md: 16px;
             --radius-lg: 24px;
@@ -73,9 +73,9 @@
             width: 100%;
             height: 100%;
             background-image:
-                radial-gradient(ellipse at 15% 20%, rgba(56, 189, 248, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 85% 60%, rgba(244, 114, 182, 0.04) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 90%, rgba(129, 140, 248, 0.05) 0%, transparent 50%);
+                radial-gradient(ellipse at 15% 20%, rgba(37, 99, 235, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 60%, rgba(124, 58, 237, 0.02) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 90%, rgba(79, 70, 229, 0.03) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
         }
@@ -88,7 +88,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.03;
+            opacity: 0.015;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: 0;
@@ -159,7 +159,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 14, 26, 0.6);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid transparent;
@@ -167,9 +167,9 @@
         }
 
         .navbar.scrolled {
-            background: rgba(10, 14, 26, 0.92);
+            background: rgba(255, 255, 255, 0.95);
             border-bottom-color: var(--border);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
         }
 
         .nav-logo {
@@ -232,7 +232,7 @@
 
         .nav-cta {
             padding: 0.6rem 1.6rem 0.6rem 1.8rem;
-            background: linear-gradient(135deg, #38bdf8, #a78bfa);
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
             border: none;
             border-radius: 50px;
             color: #fff;
@@ -245,7 +245,7 @@
             align-items: center;
             gap: 8px;
             text-decoration: none;
-            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
             letter-spacing: 0.3px;
             position: relative;
             overflow: hidden;
@@ -255,7 +255,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, #f472b6, #38bdf8);
+            background: linear-gradient(135deg, #7c3aed, #2563eb);
             opacity: 0;
             transition: opacity 0.4s ease;
             border-radius: 50px;
@@ -263,7 +263,7 @@
 
         .nav-cta:hover {
             transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 35px rgba(56, 189, 248, 0.45), 0 0 60px rgba(56, 189, 248, 0.15);
+            box-shadow: 0 8px 35px rgba(37, 99, 235, 0.25);
         }
 
         .nav-cta:hover::before {
@@ -337,7 +337,7 @@
         .hero-orb--1 {
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.3), transparent 70%);
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.15), transparent 70%);
             top: -10%;
             left: -10%;
             animation-duration: 18s;
@@ -346,7 +346,7 @@
         .hero-orb--2 {
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(244, 114, 182, 0.25), transparent 70%);
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.12), transparent 70%);
             bottom: -5%;
             right: -5%;
             animation-duration: 22s;
@@ -389,8 +389,8 @@
             align-items: center;
             gap: 8px;
             padding: 6px 16px;
-            background: rgba(56, 189, 248, 0.08);
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            background: rgba(37, 99, 235, 0.04);
+            border: 1px solid rgba(37, 99, 235, 0.12);
             border-radius: 50px;
             font-size: 0.82rem;
             color: var(--accent);
@@ -460,13 +460,13 @@
 
         .btn-primary {
             background: var(--gradient-accent);
-            color: #0a0e1a;
+            color: #ffffff;
             box-shadow: 0 4px 20px var(--accent-glow);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 35px rgba(56, 189, 248, 0.35);
+            box-shadow: 0 8px 35px rgba(37, 99, 235, 0.2);
         }
 
         .btn-outline {
@@ -621,7 +621,7 @@
             width: 32px;
             height: 32px;
             border-radius: 8px;
-            background: rgba(56, 189, 248, 0.1);
+            background: rgba(37, 99, 235, 0.06);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -729,14 +729,14 @@
         }
 
         .feature-icon--blue {
-            background: rgba(56, 189, 248, 0.1);
+            background: rgba(37, 99, 235, 0.06);
             color: var(--accent);
         }
 
         .feature-icon--blue svg { fill: var(--accent); }
 
         .feature-icon--pink {
-            background: rgba(244, 114, 182, 0.1);
+            background: rgba(124, 58, 237, 0.06);
             color: var(--accent-secondary);
         }
 
@@ -744,7 +744,7 @@
 
         .feature-icon--purple {
             background: rgba(129, 140, 248, 0.1);
-            color: #818cf8;
+            color: #4f46e5;
         }
 
         .feature-icon--purple svg { fill: #818cf8; }
@@ -765,7 +765,7 @@
 
         .feature-icon--cyan {
             background: rgba(34, 211, 238, 0.1);
-            color: #22d3ee;
+            color: #0891b2;
         }
 
         .feature-icon--cyan svg { fill: #22d3ee; }
@@ -784,7 +784,7 @@
 
         /* ========== Before / After Section ========== */
         .compare-section {
-            background: linear-gradient(180deg, var(--bg-primary) 0%, #0d1225 50%, var(--bg-primary) 100%);
+            background: linear-gradient(180deg, var(--bg-primary) 0%, #f8fafc 50%, var(--bg-primary) 100%);
         }
 
         .compare-container {
@@ -808,13 +808,13 @@
         }
 
         .compare-panel--before {
-            background: #1a1520;
+            background: #f1f5f9;
             border-color: rgba(239, 68, 68, 0.2);
         }
 
         .compare-panel--after {
             background: var(--bg-card);
-            border-color: rgba(56, 189, 248, 0.2);
+            border-color: rgba(37, 99, 235, 0.15);
             box-shadow: var(--shadow-glow);
         }
 
@@ -834,9 +834,9 @@
         }
 
         .compare-panel--after .compare-label {
-            background: rgba(56, 189, 248, 0.1);
+            background: rgba(37, 99, 235, 0.06);
             color: var(--accent);
-            border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+            border-bottom: 1px solid rgba(37, 99, 235, 0.1);
         }
 
         .compare-content {
@@ -968,7 +968,7 @@
         }
 
         .star {
-            color: #fbbf24;
+            color: #d97706;
             font-size: 1rem;
         }
 
@@ -1010,12 +1010,12 @@
 
         .testimonial-avatar--1 { background: var(--gradient-accent); }
         .testimonial-avatar--2 { background: var(--gradient-secondary); }
-        .testimonial-avatar--3 { background: linear-gradient(135deg, #22c55e 0%, #22d3ee 100%); }
-        .testimonial-avatar--4 { background: linear-gradient(135deg, #818cf8 0%, #f472b6 100%); }
-        .testimonial-avatar--5 { background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); }
-        .testimonial-avatar--6 { background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); }
-        .testimonial-avatar--7 { background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); }
-        .testimonial-avatar--8 { background: linear-gradient(135deg, #10b981 0%, #84cc16 100%); }
+        .testimonial-avatar--3 { background: linear-gradient(135deg, #10b981 0%, #0891b2 100%); }
+        .testimonial-avatar--4 { background: linear-gradient(135deg, #6366f1 0%, #db2777 100%); }
+        .testimonial-avatar--5 { background: linear-gradient(135deg, #d97706 0%, #dc2626 100%); }
+        .testimonial-avatar--6 { background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%); }
+        .testimonial-avatar--7 { background: linear-gradient(135deg, #0891b2 0%, #2563eb 100%); }
+        .testimonial-avatar--8 { background: linear-gradient(135deg, #059669 0%, #65a30d 100%); }
 
         .testimonial-name {
             font-size: 0.9rem;
@@ -1029,7 +1029,7 @@
 
         /* ========== Download Section ========== */
         .download-section {
-            background: linear-gradient(180deg, var(--bg-primary) 0%, #0d1225 100%);
+            background: linear-gradient(180deg, var(--bg-primary) 0%, #f8fafc 100%);
         }
 
         .download-cards {
@@ -1069,11 +1069,11 @@
         }
 
         .download-card--edge::before {
-            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            background: linear-gradient(90deg, #2563eb, #4f46e5);
         }
 
         .download-card--360::before {
-            background: linear-gradient(90deg, #22c55e, #22d3ee);
+            background: linear-gradient(90deg, #10b981, #0891b2);
         }
 
         .download-card:hover {
@@ -1103,7 +1103,7 @@
         }
 
         .download-card--edge .download-icon {
-            background: rgba(56, 189, 248, 0.1);
+            background: rgba(37, 99, 235, 0.06);
         }
 
         .download-card--edge .download-icon svg { fill: var(--accent); }
@@ -1148,7 +1148,7 @@
 
         .download-card--edge .download-btn {
             background: var(--gradient-accent);
-            color: #0a0e1a;
+            color: #ffffff;
         }
 
         .download-card--edge .download-btn:hover {
@@ -1157,8 +1157,8 @@
         }
 
         .download-card--360 .download-btn {
-            background: linear-gradient(135deg, #22c55e, #22d3ee);
-            color: #0a0e1a;
+            background: linear-gradient(135deg, #10b981, #0891b2);
+            color: #ffffff;
         }
 
         .download-card--360 .download-btn:hover {
@@ -1924,7 +1924,7 @@
                 </a>
             </div>
             <div class="download-card fade-in" style="border-color:rgba(148,163,184,0.15);">
-                <div class="download-icon" style="background:rgba(148,163,184,0.1);">
+                <div class="download-icon" style="background:rgba(15,23,42,0.04);">
                     <svg viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                 </div>
                 <div style="flex:1;">
@@ -1962,7 +1962,7 @@
         </div>
         <div style="display:flex;justify-content:center;gap:32px;max-width:860px;margin:0 auto;flex-wrap:wrap;">
             <div class="download-card fade-in" style="max-width:400px;display:flex;flex-direction:column;align-items:stretch;text-align:center;padding-top:32px;">
-                <div style="display:inline-block;padding:4px 14px;background:rgba(148,163,184,0.1);border:1px solid var(--border);border-radius:50px;font-size:0.78rem;color:var(--text-secondary);margin-bottom:20px;align-self:center;">免费版</div>
+                <div style="display:inline-block;padding:4px 14px;background:rgba(15,23,42,0.04);border:1px solid var(--border);border-radius:50px;font-size:0.78rem;color:var(--text-secondary);margin-bottom:20px;align-self:center;">免费版</div>
                 <h3 style="font-size:2.4rem;font-weight:900;margin-bottom:4px;font-family:var(--font-en);">¥0</h3>
                 <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:24px;">永久免费</p>
                 <ul style="list-style:none;text-align:left;margin-bottom:28px;flex:1;">
@@ -2005,9 +2005,9 @@
                 </ul>
                 <a href="#download" class="btn btn-outline" style="width:100%;justify-content:center;">免费下载</a>
             </div>
-            <div class="download-card fade-in" style="max-width:400px;display:flex;flex-direction:column;align-items:stretch;text-align:center;border-color:rgba(56,189,248,0.25);background:linear-gradient(135deg,rgba(56,189,248,0.05) 0%,rgba(244,114,182,0.05) 100%);position:relative;padding-top:32px;">
-                <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);padding:5px 20px;background:var(--gradient-accent);border-radius:0 0 12px 12px;font-size:0.78rem;font-weight:600;color:#0a0e1a;letter-spacing:0.05em;">推荐</div>
-                <div style="display:inline-block;padding:4px 14px;background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.2);border-radius:50px;font-size:0.78rem;color:var(--accent);margin-bottom:20px;align-self:center;">高级版</div>
+            <div class="download-card fade-in" style="max-width:400px;display:flex;flex-direction:column;align-items:stretch;text-align:center;border-color:rgba(37,99,235,0.15);background:linear-gradient(135deg,rgba(37,99,235,0.04) 0%,rgba(124,58,237,0.04) 100%);position:relative;padding-top:32px;">
+                <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);padding:5px 20px;background:var(--gradient-accent);border-radius:0 0 12px 12px;font-size:0.78rem;font-weight:600;color:#ffffff;letter-spacing:0.05em;">推荐</div>
+                <div style="display:inline-block;padding:4px 14px;background:rgba(37,99,235,0.06);border:1px solid rgba(37,99,235,0.12);border-radius:50px;font-size:0.78rem;color:var(--accent);margin-bottom:20px;align-self:center;">高级版</div>
                 <h3 style="font-size:2.4rem;font-weight:900;margin-bottom:4px;font-family:var(--font-en);background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">¥88</h3>
                 <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:24px;">永久授权 · 一次购买终身使用</p>
                 <ul style="list-style:none;text-align:left;margin-bottom:28px;flex:1;">
