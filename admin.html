@@ -293,7 +293,7 @@ async function loadLicenses(reset) {
     if(licenses.length===0) body.innerHTML='<div class="empty-state">暂无数据</div>';
     else licenses.forEach(l => {
       const div = document.createElement('div'); div.className='list-item';
-      div.innerHTML = '<div class="main"><div class="code-text">'+l.code+'</div><div class="sub">'+(l.used?'使用: '+formatTime(l.usedAt):'创建: '+formatTime(l.createdAt))+(l.assignedTo?' · '+escapeHtml(l.assignedTo):'')+'</div></div><span class="badge '+(l.used?'badge-used':'badge-available')+'">'+(l.used?'已使用':'未使用')+'</span>';
+      div.innerHTML = '<div class="main"><div class="code-text">'+l.code+'</div><div class="sub">'+(l.used?'使用: '+formatTime(l.usedAt):'创建: '+formatTime(l.createdAt))+(l.assignedTo?' · '+escapeHtml(l.assignedTo):'')+'</div></div><div class="tags"><span class="badge '+(l.used?'badge-used':'badge-available')+'">'+(l.used?'已使用':'未使用')+'</span><button class="btn btn-sm btn-secondary" onclick="copySingleCode(\''+l.code+'\')">📋 复制</button></div>';
       body.appendChild(div);
     });
     document.getElementById('licenseLoadMore').className='load-more'+(hasMoreLicenses?'':' disabled');
@@ -318,6 +318,10 @@ function copyCodes() {
   const text = generatedCodes.join('\n');
   if(navigator.clipboard) { navigator.clipboard.writeText(text).then(()=>showToast('已复制到剪贴板')).catch(()=>fallbackCopy(text)); }
   else fallbackCopy(text);
+}
+function copySingleCode(code) {
+  if(navigator.clipboard) { navigator.clipboard.writeText(code).then(()=>showToast('已复制: '+code)).catch(()=>fallbackCopy(code)); }
+  else fallbackCopy(code);
 }
 function fallbackCopy(text) { const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.left='-9999px'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); showToast('已复制到剪贴板'); }catch(e){ showToast('复制失败，请手动长按复制','error'); } document.body.removeChild(ta); }
 async function assignLicense() {
