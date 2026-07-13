@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>NovelGet 管理后台</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f7fa;
+      min-height: 100vh;
+    }
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+    }
+    .login-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 24px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .login-card h1 { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 4px; }
+    .login-card p { text-align: center; color: #888; font-size: 13px; margin-bottom: 24px; }
+    .login-card .form-group { margin-bottom: 16px; }
+    .login-card label { display: block; font-size: 13px; font-weight: 600; color: #555; margin-bottom: 6px; }
+    .login-card input {
+      width: 100%; padding: 14px 16px; border: 2px solid #e8e8e8; border-radius: 10px;
+      font-size: 16px; outline: none; transition: border-color 0.2s; -webkit-appearance: none;
+    }
+    .login-card input:focus { border-color: #667eea; }
+    .login-btn {
+      width: 100%; padding: 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer;
+    }
+    .login-btn:active { opacity: 0.85; }
+    .login-error { color: #f44336; font-size: 13px; text-align: center; margin-top: 12px; display: none; }
+    .login-error.show { display: block; }
+    .app-page { display: none; }
+    .app-page.show { display: block; }
+    .topbar {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff;
+      padding: 16px 20px; position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .topbar h1 { font-size: 17px; font-weight: 700; }
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+    .topbar-btn {
+      background: rgba(255,255,255,0.2); border: none; color: #fff;
+      padding: 8px 14px; border-radius: 8px; font-size: 13px; cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .topbar-btn:active { background: rgba(255,255,255,0.35); }
+    .container { padding: 16px; max-width: 800px; margin: 0 auto; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+    .stat-card {
+      background: #fff; border-radius: 12px; padding: 14px 10px; text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .stat-value { font-size: 22px; font-weight: 800; color: #667eea; line-height: 1.2; }
+    .stat-label { font-size: 11px; color: #999; margin-top: 2px; }
+    .stat-card.premium .stat-value { color: #ff9800; }
+    .stat-card.free .stat-value { color: #4caf50; }
+    .stat-card.used .stat-value { color: #f44336; }
+    .nav-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+    .nav-card {
+      background: #fff; border-radius: 12px; padding: 16px; text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06); cursor: pointer;
+      -webkit-tap-highlight-color: transparent; border: 2px solid transparent;
+    }
+    .nav-card:active { border-color: #667eea; }
+    .nav-card .nav-icon { font-size: 28px; margin-bottom: 6px; }
+    .nav-card .nav-title { font-size: 14px; font-weight: 600; color: #333; }
+    .nav-card .nav-desc { font-size: 11px; color: #999; margin-top: 2px; }
+    .panel { display: none; background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 16px; overflow: hidden; }
+    .panel.show { display: block; }
+    .panel-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid #f0f0f0; }
+    .panel-title { font-size: 15px; font-weight: 600; }
+    .panel-actions { display: flex; gap: 8px; }
+    .panel-body { padding: 0; }
+    .search-bar { display: flex; gap: 8px; padding: 12px 16px; border-bottom: 1px solid #f0f0f0; }
+    .search-bar input { flex: 1; padding: 10px 14px; border: 1.5px solid #e8e8e8; border-radius: 8px; font-size: 14px; outline: none; -webkit-appearance: none; }
+    .search-bar input:focus { border-color: #667eea; }
+    .list-item { display: flex; align-items: center; padding: 14px 16px; border-bottom: 1px solid #f5f5f5; flex-wrap: wrap; gap: 4px; }
+    .list-item:last-child { border-bottom: none; }
+    .list-item .main { flex: 1; min-width: 0; }
+    .list-item .main .title { font-size: 14px; font-weight: 500; color: #333; }
+    .list-item .main .sub { font-size: 12px; color: #999; margin-top: 2px; }
+    .list-item .tags { display: flex; gap: 4px; flex-wrap: wrap; }
+    .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+    .badge-premium { background: #fff3e0; color: #e65100; }
+    .badge-free { background: #e8f5e9; color: #2e7d32; }
+    .badge-used { background: #ffebee; color: #c62828; }
+    .badge-available { background: #e3f2fd; color: #1565c0; }
+    .badge-admin { background: #f3e5f5; color: #7b1fa2; }
+    .code-text { font-family: 'Courier New', monospace; font-size: 12px; color: #666; word-break: break-all; }
+    .empty-state { text-align: center; padding: 40px 20px; color: #bbb; font-size: 14px; }
+    .loading { text-align: center; padding: 30px; color: #999; }
+    .load-more { text-align: center; padding: 14px; color: #667eea; font-size: 13px; font-weight: 500; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .load-more:active { background: #f8f9ff; }
+    .load-more.disabled { color: #ccc; cursor: default; }
+    .btn { padding: 12px 20px; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; text-align: center; -webkit-tap-highlight-color: transparent; }
+    .btn:active { opacity: 0.85; }
+    .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; }
+    .btn-success { background: #4caf50; color: #fff; }
+    .btn-secondary { background: #f0f0f0; color: #666; }
+    .btn-sm { padding: 8px 14px; font-size: 13px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: #555; margin-bottom: 6px; }
+    .form-group input, .form-group select { width: 100%; padding: 12px 14px; border: 1.5px solid #e0e0e0; border-radius: 8px; font-size: 14px; outline: none; -webkit-appearance: none; }
+    .form-group input:focus { border-color: #667eea; }
+    .toast { position: fixed; top: 60px; left: 50%; transform: translateX(-50%) translateY(-20px); padding: 12px 24px; border-radius: 10px; color: #fff; font-weight: 500; font-size: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); opacity: 0; transition: all 0.3s ease; z-index: 300; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast-success { background: #4caf50; }
+    .toast-error { background: #f44336; }
+    .code-block { background: #f5f5f5; border-radius: 8px; padding: 12px; font-family: 'Courier New', monospace; font-size: 12px; word-break: break-all; max-height: 200px; overflow-y: auto; margin-top: 8px; line-height: 1.8; }
+    .filter-bar { display: flex; gap: 6px; padding: 10px 16px; border-bottom: 1px solid #f0f0f0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .filter-tag { padding: 6px 14px; border-radius: 20px; border: 1.5px solid #e0e0e0; background: #fff; font-size: 12px; font-weight: 500; color: #666; cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent; }
+    .filter-tag.active { background: #667eea; color: #fff; border-color: #667eea; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+<div class="login-page" id="loginPage">
+  <div class="login-card">
+    <h1>🔐 NovelGet</h1>
+    <p>管理员后台</p>
+    <div class="form-group">
+      <label>管理员密钥</label>
+      <input type="password" id="loginKey" placeholder="输入管理员密钥" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">进入后台</button>
+    <div class="login-error" id="loginError">密钥错误，请重试</div>
+  </div>
+</div>
+<div class="app-page" id="appPage">
+  <div class="topbar">
+    <h1>NovelGet 后台</h1>
+    <div class="topbar-right">
+      <button class="topbar-btn" onclick="refreshAll()">🔄 刷新</button>
+      <button class="topbar-btn" onclick="doLogout()">退出</button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="stats-grid" id="statsGrid">
+      <div class="stat-card"><div class="stat-value" id="statUsers">-</div><div class="stat-label">总用户</div></div>
+      <div class="stat-card premium"><div class="stat-value" id="statPremium">-</div><div class="stat-label">高级版</div></div>
+      <div class="stat-card free"><div class="stat-value" id="statFree">-</div><div class="stat-label">免费版</div></div>
+      <div class="stat-card"><div class="stat-value" id="statLicenses">-</div><div class="stat-label">总激活码</div></div>
+      <div class="stat-card used"><div class="stat-value" id="statUsed">-</div><div class="stat-label">已使用</div></div>
+      <div class="stat-card"><div class="stat-value" id="statRemaining">-</div><div class="stat-label">剩余</div></div>
+    </div>
+    <div class="nav-grid">
+      <div class="nav-card" onclick="showPanel('users')">
+        <div class="nav-icon">👥</div>
+        <div class="nav-title">用户管理</div>
+        <div class="nav-desc">查看用户列表和状态</div>
+      </div>
+      <div class="nav-card" onclick="showPanel('licenses')">
+        <div class="nav-icon">🔑</div>
+        <div class="nav-title">激活码管理</div>
+        <div class="nav-desc">生成和分配激活码</div>
+      </div>
+      <div class="nav-card" onclick="showPanel('generate')">
+        <div class="nav-icon">⚡</div>
+        <div class="nav-title">批量生成</div>
+        <div class="nav-desc">快速生成激活码</div>
+      </div>
+      <div class="nav-card" onclick="showPanel('assign')">
+        <div class="nav-icon">📤</div>
+        <div class="nav-title">分配激活码</div>
+        <div class="nav-desc">分配给指定用户</div>
+      </div>
+    </div>
+    <div class="panel" id="panelUsers">
+      <div class="panel-header"><div class="panel-title">👥 用户列表</div><div class="panel-actions"><button class="btn btn-sm btn-primary" onclick="loadUsers()">刷新</button></div></div>
+      <div class="search-bar"><input type="text" id="userSearchInput" placeholder="搜索邮箱..." onkeydown="if(event.key==='Enter')loadUsers()"><button class="btn btn-sm btn-primary" onclick="loadUsers()">搜索</button></div>
+      <div class="panel-body" id="userListBody"><div class="loading">加载中</div></div>
+      <div class="load-more" id="userLoadMore" onclick="loadMoreUsers()">加载更多</div>
+    </div>
+    <div class="panel" id="panelLicenses">
+      <div class="panel-header"><div class="panel-title">🔑 激活码列表</div><div class="panel-actions"><button class="btn btn-sm btn-primary" onclick="loadLicenses()">刷新</button></div></div>
+      <div class="filter-bar">
+        <span class="filter-tag active" data-filter="" onclick="filterLicenses(this,'')">全部</span>
+        <span class="filter-tag" data-filter="false" onclick="filterLicenses(this,'false')">未使用</span>
+        <span class="filter-tag" data-filter="true" onclick="filterLicenses(this,'true')">已使用</span>
+      </div>
+      <div class="panel-body" id="licenseListBody"><div class="loading">加载中</div></div>
+      <div class="load-more" id="licenseLoadMore" onclick="loadMoreLicenses()">加载更多</div>
+    </div>
+    <div class="panel" id="panelGenerate">
+      <div class="panel-header"><div class="panel-title">⚡ 批量生成激活码</div></div>
+      <div style="padding:16px;">
+        <div class="form-group"><label>生成数量</label><input type="number" id="generateCount" value="10" min="1" max="500"></div>
+        <button class="btn btn-primary" style="width:100%;" onclick="generateLicenses()">确认生成</button>
+        <div id="generateResult" style="margin-top:14px;display:none;">
+          <div style="font-size:14px;font-weight:600;margin-bottom:8px;" id="generateResultTitle"></div>
+          <div class="code-block" id="generateResultCodes"></div>
+          <button class="btn btn-sm btn-success" style="margin-top:10px;width:100%;" onclick="copyCodes()">📋 复制全部</button>
+        </div>
+      </div>
+    </div>
+    <div class="panel" id="panelAssign">
+      <div class="panel-header"><div class="panel-title">📤 分配激活码给用户</div></div>
+      <div style="padding:16px;">
+        <div class="form-group"><label>用户邮箱</label><input type="email" id="assignEmail" placeholder="user@example.com"></div>
+        <button class="btn btn-success" style="width:100%;" onclick="assignLicense()">确认分配</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const DEFAULT_API_URL = 'https://yuedu-d9ggh2ur02875af27-1440604884.ap-shanghai.app.tcloudbase.com/api/auth';
+let adminKey = '', userPage = 0, licensePage = 0, hasMoreUsers = true, hasMoreLicenses = true, generatedCodes = [], currentLicenseFilter = '';
+function doLogin() {
+  const key = document.getElementById('loginKey').value.trim();
+  if (!key) { showLoginError('请输入管理员密钥'); return; }
+  adminKey = key;
+  document.getElementById('loginBtn').textContent = '验证中...';
+  apiCall('getStats').then(data => {
+    if (data && data.success) { localStorage.setItem('adminKey', key); showApp(); refreshAll(); }
+    else { showLoginError(data.error || '密钥验证失败'); document.getElementById('loginBtn').textContent = '进入后台'; }
+  }).catch(err => { showLoginError('连接失败: ' + err.message); document.getElementById('loginBtn').textContent = '进入后台'; });
+}
+function showLoginError(msg) { const el = document.getElementById('loginError'); el.textContent = msg; el.classList.add('show'); }
+function doLogout() { adminKey = ''; localStorage.removeItem('adminKey'); document.getElementById('loginPage').style.display = 'flex'; document.getElementById('appPage').classList.remove('show'); document.getElementById('loginKey').value = ''; document.getElementById('loginError').classList.remove('show'); }
+function showApp() { document.getElementById('loginPage').style.display = 'none'; document.getElementById('appPage').classList.add('show'); }
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('show'));
+  const panel = document.getElementById('panel' + id.charAt(0).toUpperCase() + id.slice(1));
+  if (panel) { panel.classList.add('show'); panel.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  if (id === 'users' && userPage === 0) loadUsers();
+  if (id === 'licenses' && licensePage === 0) loadLicenses();
+}
+async function apiCall(action, body = {}) {
+  if (!adminKey) throw new Error('未登录');
+  const res = await fetch(DEFAULT_API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action, adminKey, ...body }) });
+  const text = await res.text(); let data;
+  try { data = JSON.parse(text); } catch(e) { throw new Error('返回格式错误'); }
+  return data;
+}
+function showToast(msg, type) { const t = document.getElementById('toast'); t.textContent = msg; t.className = 'toast toast-' + (type||'success') + ' show'; setTimeout(() => t.classList.remove('show'), 2500); }
+function formatTime(ts) { if(!ts) return '-'; const d=new Date(ts); return String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); }
+async function loadStats() { try { const d = await apiCall('getStats'); if(!d.success) return; const s = d.data; document.getElementById('statUsers').textContent=s.userTotal||0; document.getElementById('statPremium').textContent=s.premiumTotal||0; document.getElementById('statFree').textContent=s.freeTotal||0; document.getElementById('statLicenses').textContent=s.licenseTotal||0; document.getElementById('statUsed').textContent=s.licenseUsed||0; document.getElementById('statRemaining').textContent=s.licenseRemaining||0; } catch(e){} }
+async function loadUsers(reset) {
+  if(reset===undefined) reset=true;
+  if(reset) { userPage=0; hasMoreUsers=true; }
+  const search = document.getElementById('userSearchInput').value.trim();
+  const body = document.getElementById('userListBody');
+  if(reset) body.innerHTML='<div class="loading">加载中</div>';
+  try {
+    const page = userPage+1;
+    const d = await apiCall('listUsers', { page, pageSize: 20, search: search||undefined });
+    if(!d.success) { body.innerHTML='<div class="empty-state">加载失败</div>'; return; }
+    const { users, total, pageSize } = d.data;
+    userPage = page; hasMoreUsers = userPage * pageSize < total;
+    if(reset) body.innerHTML='';
+    if(users.length===0) body.innerHTML='<div class="empty-state">暂无数据</div>';
+    else users.forEach(u => {
+      const div = document.createElement('div'); div.className='list-item';
+      div.innerHTML = '<div class="main"><div class="title">'+escapeHtml(u.email)+'</div><div class="sub">注册: '+formatTime(u.createdAt)+(u.registerIP?' · IP: '+u.registerIP:'')+'</div></div><div class="tags"><span class="badge '+(u.isPremium?'badge-premium':'badge-free')+'">'+(u.isPremium?'高级版':'免费版')+'</span>'+(u.licenseKey?'<span class="badge badge-admin">已激活</span>':'')+'</div>';
+      body.appendChild(div);
+    });
+    document.getElementById('userLoadMore').className='load-more'+(hasMoreUsers?'':' disabled');
+    document.getElementById('userLoadMore').textContent=hasMoreUsers?'加载更多':'已显示全部';
+  } catch(e) { body.innerHTML='<div class="empty-state">加载失败: '+e.message+'</div>'; }
+}
+function loadMoreUsers() { if(hasMoreUsers) loadUsers(false); }
+async function loadLicenses(reset) {
+  if(reset===undefined) reset=true;
+  if(reset) { licensePage=0; hasMoreLicenses=true; }
+  const body = document.getElementById('licenseListBody');
+  if(reset) body.innerHTML='<div class="loading">加载中</div>';
+  try {
+    const page = licensePage+1;
+    const used = currentLicenseFilter===''?undefined:currentLicenseFilter==='true';
+    const d = await apiCall('listLicenses', { page, pageSize: 20, used });
+    if(!d.success) { body.innerHTML='<div class="empty-state">加载失败</div>'; return; }
+    const { licenses, total, pageSize } = d.data;
+    licensePage = page; hasMoreLicenses = licensePage * pageSize < total;
+    if(reset) body.innerHTML='';
+    if(licenses.length===0) body.innerHTML='<div class="empty-state">暂无数据</div>';
+    else licenses.forEach(l => {
+      const div = document.createElement('div'); div.className='list-item';
+      div.innerHTML = '<div class="main"><div class="code-text">'+l.code+'</div><div class="sub">'+(l.used?'使用: '+formatTime(l.usedAt):'创建: '+formatTime(l.createdAt))+(l.assignedTo?' · '+escapeHtml(l.assignedTo):'')+'</div></div><span class="badge '+(l.used?'badge-used':'badge-available')+'">'+(l.used?'已使用':'未使用')+'</span>';
+      body.appendChild(div);
+    });
+    document.getElementById('licenseLoadMore').className='load-more'+(hasMoreLicenses?'':' disabled');
+    document.getElementById('licenseLoadMore').textContent=hasMoreLicenses?'加载更多':'已显示全部';
+  } catch(e) { body.innerHTML='<div class="empty-state">加载失败: '+e.message+'</div>'; }
+}
+function loadMoreLicenses() { if(hasMoreLicenses) loadLicenses(false); }
+function filterLicenses(el, f) { document.querySelectorAll('.filter-tag').forEach(t=>t.classList.remove('active')); el.classList.add('active'); currentLicenseFilter=f; loadLicenses(true); }
+async function generateLicenses() {
+  const count = parseInt(document.getElementById('generateCount').value)||10;
+  try {
+    const d = await apiCall('generateLicenses', { count });
+    if(!d.success) { showToast(d.error||'生成失败','error'); return; }
+    generatedCodes = d.data.codes||[];
+    document.getElementById('generateResultTitle').textContent = '✅ 成功生成 '+(d.data.generated||generatedCodes.length)+' 个激活码';
+    document.getElementById('generateResultCodes').textContent = generatedCodes.join('\n');
+    document.getElementById('generateResult').style.display = 'block';
+    showToast('生成成功'); loadStats(); loadLicenses(true);
+  } catch(e) { showToast('生成失败: '+e.message,'error'); }
+}
+function copyCodes() {
+  const text = generatedCodes.join('\n');
+  if(navigator.clipboard) { navigator.clipboard.writeText(text).then(()=>showToast('已复制到剪贴板')).catch(()=>fallbackCopy(text)); }
+  else fallbackCopy(text);
+}
+function fallbackCopy(text) { const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.left='-9999px'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); showToast('已复制到剪贴板'); }catch(e){ showToast('复制失败，请手动长按复制','error'); } document.body.removeChild(ta); }
+async function assignLicense() {
+  const email = document.getElementById('assignEmail').value.trim();
+  if(!email) { showToast('请输入邮箱','error'); return; }
+  try {
+    const d = await apiCall('assignLicense', { email });
+    if(!d.success) { showToast(d.error||'分配失败','error'); return; }
+    showToast('激活码 '+d.data.code+' 已分配给 '+email); document.getElementById('assignEmail').value=''; loadStats(); loadLicenses(true);
+  } catch(e) { showToast('分配失败: '+e.message,'error'); }
+}
+function refreshAll() { loadStats(); loadUsers(true); loadLicenses(true); showToast('数据已刷新'); }
+function escapeHtml(str) { if(!str) return ''; const d=document.createElement('div'); d.textContent=str; return d.innerHTML; }
+(function init() {
+  const savedKey = localStorage.getItem('adminKey');
+  if(savedKey) { adminKey=savedKey; apiCall('getStats').then(d=>{ if(d&&d.success){ showApp(); refreshAll(); } else localStorage.removeItem('adminKey'); }).catch(()=>localStorage.removeItem('adminKey')); }
+})();
+</script>
+</body>
+</html>
