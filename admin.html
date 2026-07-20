@@ -774,7 +774,7 @@ async function loadLicenses(reset = true) {
         div.className = 'list-item';
         div.innerHTML = `
           <div class="main">
-            <div class="code-text">${l.code}</div>
+            <div class="code-text" style="display:flex;align-items:center;gap:6px;">${l.code}<span style="cursor:pointer;color:#667eea;font-size:12px;white-space:nowrap;" onclick="copyText('${l.code}')">复制</span></div>
             <div class="sub">${l.used ? '使用: ' + formatTime(l.usedAt) : '创建: ' + formatTime(l.createdAt)} ${l.assignedTo ? '· ' + escapeHtml(l.assignedTo) : ''}</div>
           </div>
           <span class="badge ${l.used ? 'badge-used' : 'badge-available'}">${l.used ? '已使用' : '未使用'}</span>
@@ -829,6 +829,14 @@ function copyCodes() {
     }).catch(() => {
       fallbackCopy(text);
     });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function copyText(text) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => showToast('已复制')).catch(() => fallbackCopy(text));
   } else {
     fallbackCopy(text);
   }
