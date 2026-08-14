@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极简阅读助手：让你的浏览器变成沉浸式阅读器</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #e74c3c;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 20px;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 0.7; }
+        h1 {
+            font-size: 28px;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .meta {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        h2 {
+            font-size: 22px;
+            color: #1a1a2e;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            padding-left: 12px;
+            border-left: 4px solid #e74c3c;
+        }
+        h3 {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.9;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        .feature-list li {
+            padding: 10px 0;
+            font-size: 16px;
+            line-height: 1.8;
+            padding-left: 24px;
+            position: relative;
+        }
+        .feature-list li::before {
+            content: "▶";
+            color: #e74c3c;
+            position: absolute;
+            left: 0;
+            font-size: 12px;
+            top: 14px;
+        }
+        blockquote {
+            background: #f9f9f9;
+            border-left: 4px solid #e74c3c;
+            padding: 15px 20px;
+            margin: 20px 0;
+            color: #555;
+            font-size: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #fff5f5, #fff);
+            border: 1px solid #ffe0e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .highlight-box h3 {
+            margin-top: 0;
+            color: #e74c3c;
+        }
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ddd, transparent);
+            margin: 30px 0;
+        }
+        strong {
+            color: #e74c3c;
+        }
+        .tag {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+        .tag-free {
+            background: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 返回首页</a>
+        <h1>极简阅读助手：让你的浏览器变成沉浸式阅读器</h1>
+        <div class="meta">极简阅读助手 · 2026年8月 · 浏览器扩展评测</div>
+
+        <p>在信息爆炸的时代，我们每天都在浏览大量的网页文章、新闻资讯和小说连载。然而，弹窗广告、侧边栏推荐、混乱的排版，总是打断我们的阅读节奏。<strong>极简阅读助手</strong>正是一款为解决这些痛点而生的浏览器扩展，它能一键将任意网页转换为沉浸式阅读界面，让你专注于内容本身。</p>
+
+        <p>无论是追更网络小说、阅读新闻深度报道，还是学习技术博客，极简阅读助手都能为你提供杂志般的阅读体验。下面让我们详细了解这款工具的核心功能。</p>
+
+        <h2>一、沉浸式阅读模式</h2>
+
+        <p>打开任意网页，点击工具栏图标或按下快捷键，即可进入阅读模式。扩展会智能提取网页正文内容，去除广告、导航栏、评论区等干扰元素，将文章重新排版为干净的"纸张"样式。</p>
+
+        <p>阅读模式支持<strong>多页自动合并</strong>功能，对于分页的文章可以自动加载后续页面内容，无需手动翻页。同时，<strong>智能内容提取增强</strong>技术能够保留新闻和博客文章中的图片，确保阅读体验完整。</p>
+
+        <ul class="feature-list">
+            <li>一键进入，智能提取正文，去除广告和干扰元素</li>
+            <li>多页文章自动合并，无需手动翻页</li>
+            <li>图片智能保留，新闻博客阅读体验更佳</li>
+            <li>文章大纲导航，左侧目录快速跳转章节</li>
+            <li>白名单功能，指定网站自动进入阅读模式</li>
+        </ul>
+
+        <h2>二、个性化阅读设置</h2>
+
+        <p>每个人的阅读习惯不同，极简阅读助手提供了丰富的个性化设置，让你找到最舒适的阅读方式。</p>
+
+        <h3>九种背景主题</h3>
+        <p>内置九种精心调配的背景色调，适应不同场景和光线条件。白天使用纯白或米白主题，清晰护眼；夜间切换到深灰或夜间模式，减少屏幕蓝光。还有苹果绿、薄荷绿、羊皮纸、复古棕、薰衣草等多种风格，总有一款适合你。</p>
+
+        <h3>字体与排版</h3>
+        <p>提供四种字体选择：系统默认、宋体、黑体、楷体。字号可在14至80像素之间自由调节，行距从1.2倍到3.0倍灵活设置，页宽范围500至1800像素。无论你喜欢紧凑的信息密度还是宽松的留白排版，都能轻松调整。</p>
+
+        <h3>分栏阅读</h3>
+        <p>在宽屏显示器上，可以开启分栏阅读模式，将文章内容分为左右两栏，类似报纸杂志的排版方式，减少眼球移动距离，提升阅读效率。</p>
+
+        <h2>三、TTS语音朗读</h2>
+
+        <p>长时间盯着屏幕容易疲劳，TTS语音朗读功能可以解放你的双眼。点击侧边栏的朗读按钮，扩展会自动选择合适的中文语音，将文章内容朗读出来。</p>
+
+        <p>朗读支持<strong>自动下一章</strong>功能，当前章节朗读完毕后自动加载下一章继续朗读，非常适合长篇小说的连续收听。语速可在0.5倍到2.0倍之间调节，快慢自如。朗读过程中，按下空格键可以随时暂停或继续。</p>
+
+        <blockquote>通勤路上、做家务时，开启TTS朗读，让小说变成有声书，碎片时间也能享受阅读的乐趣。</blockquote>
+
+        <h2>四、文本标注与高亮</h2>
+
+        <p>阅读时遇到精彩的段落或重要的信息，可以直接选中文本进行标注。极简阅读助手提供四种高亮颜色：黄色、绿色、蓝色、红色，方便你按重要性分类标记。</p>
+
+        <p>每条标注还可以添加文字笔记，记录你的阅读心得。标注列表面板会展示所有标注内容，点击即可跳转到对应位置。鼠标悬停在高亮文本上，还会显示笔记内容的浮动提示。</p>
+
+        <ul class="feature-list">
+            <li>四种高亮颜色，分类标记重点内容</li>
+            <li>支持添加文字笔记，记录阅读心得</li>
+            <li>标注列表快速跳转，悬停查看笔记</li>
+            <li>高级版支持标注云端同步，跨设备不丢失</li>
+        </ul>
+
+        <h2>五、聚焦模式</h2>
+
+        <p>对于长篇文章，注意力容易分散。开启聚焦模式后，当前阅读段落会高亮显示，其余段落自动降低透明度，形成聚光灯效果，帮助你集中注意力逐段阅读。</p>
+
+        <p>点击段落可以锁定焦点，锁定后滚动页面不会改变聚焦位置，再次点击解锁。这种渐进式阅读方式特别适合阅读技术文档和学术论文。</p>
+
+        <h2>六、云书签与阅读进度</h2>
+
+        <div class="highlight-box">
+            <h3>云书签跨设备同步 <span class="tag">高级版</span></h3>
+            <p>将喜欢的网页文章或小说加入云书签，所有数据云端保存。无论在办公室的电脑还是家里的笔记本，登录同一账号即可继续阅读。云书签会自动记录每篇文章的阅读进度，打开后直接跳转到上次阅读的位置。</p>
+        </div>
+
+        <p>云书签卡片展示丰富的信息：书名、作者、当前章节、阅读进度百分比、来源网站、最后阅读时间。支持按标题或作者搜索，快速找到你想继续阅读的内容。点击"继续阅读"按钮，自动打开对应章节并进入阅读模式。</p>
+
+        <h2>七、本地书籍导入</h2>
+
+        <div class="highlight-box">
+            <h3>本地书架 <span class="tag">高级版</span></h3>
+            <p>支持导入 TXT、DOCX、DOC、MD、RTF 格式的本地文件，在浏览器中享受与网页阅读一致的良好体验。拖拽文件即可导入，进度自动保存，下次打开继续阅读。</p>
+        </div>
+
+        <p>本地书籍阅读界面完全同步了网页阅读模式的所有功能，包括分栏阅读、文本标注、编辑模式、聚焦功能和导出功能。阅读进度以百分比形式保存，打开后自动定位到上次位置。</p>
+
+        <h2>八、导出与分享</h2>
+
+        <p>阅读过程中，可以将内容导出为多种格式保存或分享。免费版支持导出为 PDF、Markdown、Word 文档。高级版额外支持截长图功能，可以将整篇文章截取为一张完整的 PNG 图片，方便在社交媒体上分享。</p>
+
+        <ul class="feature-list">
+            <li>导出 PDF：适合打印和存档</li>
+            <li>导出 Markdown：适合二次编辑和发布</li>
+            <li>导出 Word：适合办公场景使用</li>
+            <li>截长图：一键生成完整文章图片 <span class="tag">高级版</span></li>
+        </ul>
+
+        <h2>九、古代文人等级系统</h2>
+
+        <p>极简阅读助手内置了一套趣味十足的等级系统，根据累计阅读时长自动升级。从平民起步，依次经历童生、秀才、举人、贡士、进士、翰林、大学士、大儒、半圣，最终达到圣人境界。</p>
+
+        <p>每次阅读都会累计时长，账号中心面板展示当前等级、累计阅读时间和升级进度条。这套等级系统为阅读增添了一份游戏化的乐趣，激励你养成持续阅读的好习惯。</p>
+
+        <blockquote>读万卷书，行万里路。从平民到圣人，每一次阅读都是一次成长。</blockquote>
+
+        <h2>十、更多实用功能</h2>
+
+        <ul class="feature-list">
+            <li><strong>自动滚动阅读</strong>：十档速度可选，解放双手自动阅读 <span class="tag">高级版</span></li>
+            <li><strong>全屏阅读模式</strong>：隐藏所有浏览器界面元素，极致沉浸</li>
+            <li><strong>编辑模式</strong>：直接在阅读界面修改文本内容</li>
+            <li><strong>快捷键系统</strong>：空格键控制朗读，快捷键高效操作</li>
+            <li><strong>阅读进度保存</strong>：退出时自动记录，云端同步 <span class="tag">高级版</span></li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h2>高级版：一次购买，永久授权</h2>
+
+        <p>极简阅读助手的核心阅读功能完全免费，包括沉浸式阅读、TTS朗读、文本标注、聚焦模式、分栏阅读、主题字体自定义等。高级版仅需<strong>19元</strong>，一次购买永久授权，解锁以下专属功能：</p>
+
+        <ul class="feature-list">
+            <li>云书签跨设备同步</li>
+            <li>阅读进度云端保存</li>
+            <li>本地书籍导入阅读</li>
+            <li>自动滚动阅读</li>
+            <li>截长图功能</li>
+            <li>标注云端同步</li>
+        </ul>
+
+        <p>无论你是小说爱好者、新闻重度读者，还是技术博客追随者，极简阅读助手都能为你提供干净、舒适、高效的阅读体验。现在就安装，开启你的沉浸式阅读之旅吧。</p>
+
+        <p style="text-align: center; margin-top: 40px; color: #999; font-size: 14px;">— 极简阅读助手，让阅读回归纯粹 —</p>
+
+        <p style="text-align: center; margin-top: 20px;">
+            <a href="index.html#download" style="display:inline-block;padding:12px 32px;background:#e74c3c;color:white;text-decoration:none;border-radius:8px;font-size:16px;font-weight:bold;">立即下载极简阅读助手</a>
+        </p>
+    </div>
+</body>
+</html>
